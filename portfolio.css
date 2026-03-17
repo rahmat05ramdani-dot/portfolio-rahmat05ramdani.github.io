@@ -395,23 +395,78 @@ font-family: 'Kanit',sans-serif;
 .skills{
 margin-top: 100px;
 }
-.skills_img{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 100%;
+ .skills-container{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: #ff0033;
+    box-shadow: 0 0 15px #ff0033, 0 0 30px #ff0033;
+    border-left: none;
+    border-right: none;
+    padding: 10px 0;
     margin: auto;
+    margin-top: 15%;
+}
+
+.gambar{
+    flex: 0 0 auto;
+    width: clamp(100px, 25vw, 180px); /* lebih stabil */
+    margin: 0 clamp(10px, 3vw, 30px);
+   
+    height: auto;
+    background: none;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+
+}
+
+.skills_img{
+    display: flex;
+    width: max-content;
+    animation: scroll 10s linear infinite;
+    will-change: transform;
+}
+
+@keyframes scroll{
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(-50%);
+    }
+}
+@media (max-width: 600px) {
+        .skills-container{
+            margin-right: 3vw;
+        }
+        .skills_img {
+            animation: scroll 2s linear infinite;
+    }
+    .gambar {
+        width:40px; /* lebih kecil */
+        height: auto;
+        margin: 0 10px; /* jangan terlalu jauh */
+    }
+
+}
+.skills-container:hover .skills_img{
+    animation-play-state: paused;
 }
 .skills_img img{
-    width: 10vw;
+    width: 80%;
     max-width: 100%;
     height: auto;
     border-radius: 10px;
-    justify-content: space-between;
+    justify-content: center;
     background-color: none;
     padding: none;
 }
+
+
 .contact{
     margin-top: 50%;
     margin-bottom: 20%;
@@ -437,16 +492,20 @@ margin-top: 100px;
     text-align: center;
 }
 .contact-icons {
-    margin-top:10%;
-    gap: 5vw;
+    margin-top: 10%;
     margin-bottom: 10%;
-    margin-left: 16%;
+    gap: 5vw;
+
     width: 60vw;
     max-width: 100%;
     height: auto;
-    display:flex;
-justify-content:center; /* tengah horizontal */
-align-items:center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .contact-icons i{
