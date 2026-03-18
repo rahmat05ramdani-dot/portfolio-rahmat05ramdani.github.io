@@ -82,7 +82,7 @@
     margin: auto;
     padding: 1px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     background:none;
 }
@@ -192,7 +192,7 @@ font-family: 'Kanit',sans-serif;
 .listproject img:hover{
     opacity: 0.5;
     transform: scale(1.1);
-    transition: 1,2 ease;
+    transition: 1.2s ease;
 }
 
 .button{
@@ -222,64 +222,72 @@ font-family: 'Kanit',sans-serif;
     transition: 1,2 ease;
 
 }
-    #certifications{
-        max-width: 100%;
-        margin-right: 10%;
-        margin: auto;
-    }
+#certifications{
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.5s ease;
+}
+
+#certifications.show{
+    max-height: 1000px; /* cukup besar */
+}
+    
         .card-container{
-            display:inline-flex;
-            gap:2%;
-            margin-right:30%;
-            max-width: 100%;
-            margin: auto;
-            margin-top:15%;
-            }
+            display:flex;
+            justify-content: center; /* INI KUNCINYA */
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap; /* biar responsif ke bawah */
+            overflow: visible; 
+            padding: 5%;
+            margin-top: 5%;
+             }
             
             .card1, .card2, .card3, .card4{
-            width:80vw;
-            height: auto;
-            transition:0.4s;
+                width: 250px; /* jangan pakai 80vw, kegedean */
+                transition: 0.4s;
             }
             
             .card1 img, .card2 img, .card3 img, .card4 img{
-            width:100%;
-            object-fit:contain;
-            border-radius: 5px;
+                width: 100%;
+                object-fit: contain;
+                border-radius: 5px;
             }
             .card1 img:hover{
-            transform: scale(2);
-            position: relative;
-            margin-left: 25vw;
-            transition: 0.5 ease;
+                transform: scale(1.5);
+                z-index: 10;
+            transition: 0.5s ease;
             box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+            
             }
 
             .card2 img:hover{
-                transform: scale(3);
+                transform: scale(1.5);
                 position: relative;
-                margin-left: 10vw;
-                transition: 0.5 ease;
+                overflow-y: visible;
+                        z-index: 10;
+                transition: 0.5s ease;
                 box-shadow: 0 12px 20px rgba(0,0,0,0.3);
                 }
             .card3 img:hover{
-                    transform: scale(3);
-                    position: relative;
-                    margin-right: 15vw;
-                    transition: 0.5 ease;
+                transform: scale(1.5);
+                 z-index: 10;
+                    transition: 0.5s ease;
                     box-shadow: 0 12px 20px rgba(0,0,0,0.3);
                     }
             .card4 img:hover{
-                        transform: scale(3);
-                        position: relative;
-                        margin-left: 0;
-                        margin-right: 10%;
-                        transition: 5 ease;
+                        transform: scale(1.5);
+                        z-index: 10;
+                        transition: 0.5s ease;
                         box-shadow: 0 12px 20px rgba(0,0,0,0.3);
                         }
             
                            
-            
+              @media (max-width: 768px){
+                            .card1, .card2, .card3, .card4{
+                                width: 45%; /* jadi 2 kolom */
+                            }
+                        }
 
 .background_skillset{
     margin-top: 100px;
@@ -314,6 +322,7 @@ font-family: 'Kanit',sans-serif;
     text-decoration: none;
     font-size: 2.7vw;
     color: wheat;
+    justify-content: center;
     padding: 0;
     margin: 0;
 }
@@ -405,7 +414,7 @@ margin-top: 100px;
     border-right: none;
     padding: 10px 0;
     margin: auto;
-    margin-top: 15%;
+    margin-top: 2%;
 }
 
 .gambar{
@@ -439,7 +448,7 @@ margin-top: 100px;
         transform: translateX(-50%);
     }
 }
-@media (max-width: 600px) {
+@media (max-width: 800px) {
         .skills-container{
             margin-right: 3vw;
         }
@@ -466,7 +475,79 @@ margin-top: 100px;
     padding: none;
 }
 
+.skills p{
+    color: #ff9100;
+    text-align: center;
+    font-size: 5vw;
 
+    /* efek neon 🔥 */
+    text-shadow: 
+        0 0 5px #e9e4e5,
+        0 0 10px #ff0033,
+        0 0 20px #ff0033,
+        0 0 40px #ff0033;
+}
+.softskills{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3%;
+    flex-wrap: nowrap;
+    padding: 20px;
+
+    width: 100%;       /* 🔥 full layar */
+    margin: 0 auto;    /* 🔥 center container */
+}
+/* CARD */
+.softskills_card{
+    position: relative;
+    width: 20vw;
+    border-radius: 20px;
+    overflow: visible;
+    
+    background: none;
+    
+    transition: 0.4s;
+}
+
+/* hover */
+.softskills_card:hover{
+    transform: scale(1.05);
+    box-shadow: 
+        0 0 20px #f5f2f3,
+        0 0 40px #ff0033,
+        0 0 80px #ff0033;
+}
+
+/* gambar */
+.softskills_card img{
+    width: 100%;
+    max-width: fit-content;
+    justify-content: center;
+    display: flex;
+    opacity: 1;
+}
+
+/* teks */
+.softskills_card p{
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translate(-50%, -10px); /* posisi awal agak naik */
+    
+    color: white; /* 🔥 jadi putih */
+    font-weight: bold;
+    font-size: 18px;
+
+    opacity: 0; /* 🔥 disembunyikan */
+    transition: 0.4s ease;
+}
+
+/* muncul saat hover */
+.softskills_card:hover p{
+    opacity: 2;
+    transform: translate(-50%, 0); /* turun sedikit biar smooth */
+}
 .contact{
     margin-top: 50%;
     margin-bottom: 20%;
@@ -492,7 +573,7 @@ margin-top: 100px;
     text-align: center;
 }
 .contact-icons {
-    margin-top: 10%;
+    margin-top: 5%;
     margin-bottom: 10%;
     gap: 5vw;
 

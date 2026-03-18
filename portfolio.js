@@ -9,6 +9,9 @@ window.addEventListener("load", function(){
     },1500);
     
     });
+    AOS.init({
+        offset: 80, // default 120, coba kecilin
+    });
 
     document.addEventListener("click", function(){
         const music = document.getElementById("music");
@@ -61,23 +64,19 @@ window.addEventListener("load", function(){
         
         
 
-    function showCertifications(){
-        document.getElementById("slider").style.display = "block";
-        AOS.refresh();
-        function slideLeft(){
-            document.getElementById("cards").scrollBy({
-            left:-220,
-            behavior:"smooth"
-            });
-            }
-            
-            function slideRight(){
-            document.getElementById("cards").scrollBy({
-            left:220,
-            behavior:"smooth"
-            });
-            }
-        }
+        function showCertifications() {
+            const cert = document.getElementById("certifications");
+            const btn = document.querySelector(".lainnya");
         
-    
-            
+            cert.classList.toggle("show");
+        
+            if (cert.classList.contains("show")) {
+                btn.innerText = "see less certifications";
+            } else {
+                btn.innerText = "see more certifications";
+            }
+        
+            setTimeout(() => {
+                AOS.refreshHard();
+            }, 300);
+        }
