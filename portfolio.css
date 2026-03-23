@@ -150,24 +150,43 @@ font-family: 'Kanit',sans-serif;
     word-spacing: 3px;
 }
 
+/* Reset link biar tidak berubah-ubah */
+a.cv,
+a.cv:link,
+a.cv:visited,
+a.cv:hover,
+a.cv:active {
+    text-decoration: none !important;
+    color: #ffffff !important;
+}
+
+/* Hilangkan efek biru saat tap di HP */
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Button utama */
 .cv {
-    display: inline-block; /* WAJIB untuk <a> biar bisa seperti button */
-    text-decoration: none; /* hilangkan garis bawah */
-    
+    display: inline-block;
+    text-decoration: none;
+
     background: linear-gradient(135deg, #ff0000, #990000);
     color: #ffffff;
     border: none;
     margin-top: 3%;
     padding: 0.8rem 1rem;
-    font-size: 1.2rem;
+
+    font-size: clamp(0.9rem, 2vw, 1.2rem); /* RESPONSIVE */
     font-family: 'Orbitron', sans-serif;
-    font-weight: 600; /* FIX: sebelumnya salah (6vw) */
+    font-weight: 600;
+
     border-radius: 8px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
     letter-spacing: 1px;
     text-transform: uppercase;
+
     transition: all 0.3s ease;
 }
 
@@ -183,7 +202,7 @@ font-family: 'Kanit',sans-serif;
     transition: 0.5s;
 }
 
-/* Hover efek */
+/* Hover (desktop) */
 .cv:hover::before {
     left: 100%;
 }
@@ -194,15 +213,10 @@ font-family: 'Kanit',sans-serif;
     transform: translateY(-2px) scale(1.03);
 }
 
-/* Klik efek */
+/* Active (mobile click) */
 .cv:active {
     transform: scale(0.97);
     box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
-}
-
-/* Optional: hilangkan warna ungu/biru setelah diklik */
-.cv:visited {
-    color: #ffffff;
 }
 .photoprofile{
   max-width: 100%;
