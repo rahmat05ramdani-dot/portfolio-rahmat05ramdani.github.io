@@ -149,6 +149,61 @@ font-family: 'Kanit',sans-serif;
     text-align: justify;
     word-spacing: 3px;
 }
+
+.cv {
+    display: inline-block; /* WAJIB untuk <a> biar bisa seperti button */
+    text-decoration: none; /* hilangkan garis bawah */
+    
+    background: linear-gradient(135deg, #ff0000, #990000);
+    color: #ffffff;
+    border: none;
+    margin-top: 3%;
+    padding: 0.8rem 1rem;
+    font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600; /* FIX: sebelumnya salah (6vw) */
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+/* Glow effect */
+.cv::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: 0.5s;
+}
+
+/* Hover efek */
+.cv:hover::before {
+    left: 100%;
+}
+
+.cv:hover {
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7),
+                0 0 30px rgba(255, 0, 0, 0.5);
+    transform: translateY(-2px) scale(1.03);
+}
+
+/* Klik efek */
+.cv:active {
+    transform: scale(0.97);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+}
+
+/* Optional: hilangkan warna ungu/biru setelah diklik */
+.cv:visited {
+    color: #ffffff;
+}
 .photoprofile{
   max-width: 100%;
   margin: auto;  
