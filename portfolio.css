@@ -1,20 +1,37 @@
 /* =========================================================
-   PORTFOLIO - Rahmat Ramdani
-   Tema tetap: merah + grid bergerak + aksen orange/neon
+   PORTFOLIO - Rahmat Ramdani  (FULL CSS, versi final)
+   Tema: merah + grid bergerak + aksen orange/neon
+   Isi:
+     1. Variabel & reset
+     2. Loader
+     3. Navbar
+     4. Hero / pengenalan
+     5. Projects
+     6. Backgrounds
+     7. Sertifikat
+     8. Education
+     9. Skills
+    10. Contact
+    11. Footer
+    12. Responsive (tablet & HP)
+    13. Aksesibilitas
    ========================================================= */
 
+
+/* ---------- 1. VARIABEL & RESET ---------- */
 :root{
     --bg: #a34141;
     --bg-soft: #c94d4d;
+    --panel: rgba(60, 10, 10, 0.45);
     --red: #ff0033;
     --red-dark: #990000;
-    --orange: #ff9100;
-    --wheat: wheat;
+    --orange: #ffb347;
+    --wheat: #ffe3b0;
     --text: #ffffff;
+    --stamp: #4a0909;
     --nav-h: 56px;
 }
 
-/* ---------- RESET (sebelumnya memakai * dengan margin/background di semua elemen) ---------- */
 *,
 *::before,
 *::after{
@@ -33,14 +50,15 @@ body{
     min-height: 100vh;
     overflow-x: clip;
     font-family: 'Kanit', 'Roboto', sans-serif;
-    color: var(--text);
+    font-size: 1.05rem;
     line-height: 1.6;
+    color: var(--text);
 
-    /* grid bergerak dipindah ke body saja (lebih ringan, tidak ditumpuk di tiap elemen) */
+    /* grid bergerak (hanya di body) */
     background-color: var(--bg);
     background-image:
-        linear-gradient(rgba(255,0,0,0.3) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,0,0,0.3) 1px, transparent 1px);
+        linear-gradient(rgba(255,0,0,0.14) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,0,0,0.14) 1px, transparent 1px);
     background-size: 60px 60px;
     animation: gridMove 12s linear infinite;
 }
@@ -64,19 +82,14 @@ a{
     -webkit-tap-highlight-color: transparent;
 }
 
-:focus-visible{
-    outline: 3px solid var(--wheat);
-    outline-offset: 3px;
-}
-
-/* ---------- WRAPPER ---------- */
 .semua{
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 clamp(16px, 4vw, 40px);
 }
 
-/* ---------- LOADER ---------- */
+
+/* ---------- 2. LOADER ---------- */
 .loader{
     position: fixed;
     inset: 0;
@@ -84,8 +97,8 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
     padding: 20px;
+    text-align: center;
 
     background: linear-gradient(135deg, #ff0000, #8b0000, #300000);
     color: rgb(237, 231, 231);
@@ -114,7 +127,8 @@ a{
     to{ transform: rotate(360deg); }
 }
 
-/* ---------- NAVBAR ---------- */
+
+/* ---------- 3. NAVBAR ---------- */
 .navbar{
     position: sticky;
     top: 0;
@@ -127,7 +141,7 @@ a{
     padding: 8px clamp(16px, 4vw, 40px);
     font-family: 'Roboto', sans-serif;
 
-    background: rgba(120, 20, 20, 0.65);
+    background: rgba(70, 10, 10, 0.88);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
@@ -135,12 +149,13 @@ a{
 
 .navbar a{
     position: relative;
+    padding: 4px 2px;
     color: var(--text);
     text-decoration: none;
-    font-size: clamp(0.85rem, 1.4vw, 1.1rem);
     white-space: nowrap;
-    padding: 4px 2px;
-    transition: color 0.3s ease, transform 0.3s ease;
+    font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .navbar a::after{
@@ -165,7 +180,8 @@ a{
     transform: scaleX(1);
 }
 
-/* ---------- HERO / PENGENALAN ---------- */
+
+/* ---------- 4. HERO / PENGENALAN ---------- */
 .pengenalan{
     display: flex;
     align-items: center;
@@ -187,18 +203,49 @@ a{
     line-height: 1.25;
 }
 
-.identitas{
-    display: inline-block;
-    min-height: 1.5em;
+/* sapaan kecil & ringan */
+.pengenalan h1:nth-of-type(1) .hallo,
+.pengenalan h1:nth-of-type(2) .hallo{
     font-family: 'Kanit', sans-serif;
-    font-size: clamp(1.1rem, 2.4vw, 1.8rem);
-    padding-right: 5px;
-    border-right: 3px solid red;
-    animation: blink 0.7s infinite;
+    font-weight: 300;
+    font-size: clamp(1.1rem, 2.4vw, 1.7rem);
+    letter-spacing: 3px;
+    opacity: 0.9;
+}
+
+/* NAMA: besar, tebal, gradasi */
+.pengenalan h1:nth-of-type(3) .hallo{
+    margin: 2px 0 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    line-height: 1.1;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #ffffff 0%, var(--wheat) 55%, var(--orange) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(3px 3px 0 #5a0f0f);
 }
 
 .pengenalan h2{
-    margin: 8px 0 12px;
+    margin: 8px 0 14px;
+}
+
+/* teks mengetik */
+.identitas{
+    display: inline-block;
+    min-height: 1.5em;
+    padding-right: 5px;
+    border-right: 3px solid red;
+    font-family: 'Orbitron', 'Kanit', sans-serif;
+    font-weight: 600;
+    font-size: clamp(0.95rem, 2vw, 1.5rem);
+    letter-spacing: 1px;
+    color: var(--orange);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    animation: blink 0.7s infinite;
 }
 
 @keyframes blink{
@@ -206,16 +253,23 @@ a{
     50%{ border-color: red; }
 }
 
+/* deskripsi hero (panel gelap) */
 .deskripsi1{
     display: block;
-    max-width: 60ch;
+    max-width: 65ch;
+    padding: 1rem 1.25rem;
     font-family: 'Kanit', sans-serif;
-    font-size: clamp(1rem, 1.7vw, 1.3rem);
+    font-size: clamp(1rem, 1.7vw, 1.25rem);
+    font-weight: 400;
     line-height: 1.7;
     text-align: left;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.45);
+    background: var(--panel);
+    border-left: 4px solid var(--orange);
+    border-radius: 14px;
 }
 
-/* Tombol CV */
+/* tombol CV */
 a.cv,
 a.cv:link,
 a.cv:visited,
@@ -236,8 +290,8 @@ a.cv:active{
     border-radius: 8px;
     cursor: pointer;
 
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
     font-family: 'Orbitron', sans-serif;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -267,6 +321,7 @@ a.cv:active{
     box-shadow: 0 0 10px rgba(255,0,0,0.8);
 }
 
+/* foto profil */
 .photoprofile{
     flex: 0 1 40%;
     max-width: 420px;
@@ -275,14 +330,43 @@ a.cv:active{
 
 .photoprofile img{
     width: 100%;
-    height: auto;
     padding: 2px;
     background-color: var(--bg-soft);
     border-radius: 60px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.35);
 }
 
-/* ---------- PROJECTS ---------- */
+
+/* ---------- JUDUL SECTION (dipakai bersama) ---------- */
+.listproject h2,
+.background_skillset > h2,
+.education h2,
+.skills h2,
+.contact h2{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    text-shadow: 3px 3px 0 var(--stamp);
+}
+
+.listproject h2::after,
+.background_skillset > h2::after,
+.education h2::after,
+.skills h2::after{
+    content: "";
+    display: block;
+    width: 72px;
+    height: 5px;
+    margin-top: 12px;
+    border-radius: 3px;
+    background: var(--orange);
+    box-shadow: 0 0 12px rgba(255, 179, 71, 0.7);
+}
+
+
+/* ---------- 5. PROJECTS ---------- */
 .project{
     padding-top: clamp(60px, 10vw, 120px);
 }
@@ -292,19 +376,17 @@ a.cv:active{
     text-align: center;
 }
 
-.listproject h2,
-.background_skillset h2,
-.education h2{
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.8rem, 5vw, 3.5rem);
-    line-height: 1.2;
+.listproject h2::after{
+    margin-inline: auto;
 }
 
 .listproject h3{
-    margin-top: 6px;
+    margin-top: 10px;
+    font-family: 'Kanit', sans-serif;
     font-size: clamp(0.95rem, 1.8vw, 1.3rem);
-    font-weight: 400;
-    opacity: 0.85;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: var(--wheat);
 }
 
 .listproject > a{
@@ -326,7 +408,8 @@ a.cv:active{
     box-shadow: 0 14px 35px rgba(0,0,0,0.5);
 }
 
-/* ---------- BACKGROUNDS ---------- */
+
+/* ---------- 6. BACKGROUNDS ---------- */
 .background_skillset{
     padding-top: clamp(60px, 10vw, 120px);
 }
@@ -345,21 +428,34 @@ a.cv:active{
     margin-bottom: clamp(32px, 6vw, 72px);
 }
 
+/* paragraf: RATA KIRI (tidak justify) + panel gelap */
 .latarbelakang1 p,
-.latarbelakang2 p{
+.latarbelakang2 p,
+.educationdesc p{
     flex: 1 1 50%;
-    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    min-width: 0;
+    max-width: 65ch;
+    padding: 1rem 1.25rem;
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    font-weight: 400;
     line-height: 1.75;
+    letter-spacing: 0.3px;
     text-align: left;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.45);
+    background: var(--panel);
+    border-left: 4px solid var(--orange);
+    border-radius: 14px;
 }
 
 .latarbelakang1 a,
 .latarbelakang2 a{
     display: inline-block;
     color: var(--wheat);
-    text-decoration: underline;
-    text-underline-offset: 4px;
     font-size: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
     transition: opacity 0.3s ease;
 }
 
@@ -378,7 +474,8 @@ a.cv:active{
     box-shadow: 0 10px 25px rgba(0,0,0,0.35);
 }
 
-/* ---------- SERTIFIKAT ---------- */
+
+/* ---------- 7. SERTIFIKAT ---------- */
 .button{
     display: flex;
     justify-content: center;
@@ -387,11 +484,12 @@ a.cv:active{
 
 .lainnya{
     padding: 0.8rem 1.6rem;
-    font-size: clamp(0.95rem, 1.8vw, 1.2rem);
     font-family: 'Kanit', sans-serif;
-    color: orange;
-    background: transparent;
-    border: 2px solid orange;
+    font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+    font-weight: 600;
+    color: var(--orange);
+    background: rgba(60, 10, 10, 0.6);
+    border: 2px solid var(--orange);
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
@@ -399,7 +497,7 @@ a.cv:active{
 
 .lainnya:hover{
     transform: scale(1.06);
-    background: orange;
+    background: var(--orange);
     color: #3a0a0a;
 }
 
@@ -441,27 +539,25 @@ a.cv:active{
     box-shadow: 0 12px 20px rgba(0,0,0,0.35);
 }
 
-/* ---------- EDUCATION ---------- */
+
+/* ---------- 8. EDUCATION ---------- */
 .education{
     padding-top: clamp(50px, 8vw, 100px);
 }
 
 .education h2{
-    text-align: right;
     margin-bottom: clamp(20px, 4vw, 40px);
+    text-align: right;
+}
+
+.education h2::after{
+    margin-left: auto;
 }
 
 .educationdesc{
     display: flex;
     align-items: center;
     gap: clamp(20px, 4vw, 48px);
-}
-
-.educationdesc p{
-    flex: 1 1 50%;
-    font-size: clamp(1rem, 1.8vw, 1.35rem);
-    line-height: 1.75;
-    text-align: left;
 }
 
 .educationdesc img{
@@ -471,26 +567,21 @@ a.cv:active{
     border-radius: 20px;
 }
 
-/* ---------- SKILLS ---------- */
+
+/* ---------- 9. SKILLS ---------- */
 .skills{
     padding-top: clamp(60px, 10vw, 120px);
-}
-
-.skills h2{
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.8rem, 5vw, 3.5rem);
 }
 
 .skills > p{
     margin-top: 24px;
     text-align: center;
-    color: var(--orange);
+    font-family: 'Montserrat', sans-serif;
     font-size: clamp(1.5rem, 4vw, 2.6rem);
-    text-shadow:
-        0 0 5px #e9e4e5,
-        0 0 10px #ff0033,
-        0 0 20px #ff0033,
-        0 0 40px #ff0033;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--orange);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6), 0 0 14px rgba(255, 0, 51, 0.8);
 }
 
 .skills-container{
@@ -533,7 +624,7 @@ a.cv:active{
     to{ transform: translateX(-50%); }
 }
 
-/* Soft skills */
+/* soft skills */
 .softskills{
     display: flex;
     justify-content: center;
@@ -565,12 +656,15 @@ a.cv:active{
     top: 12px;
     left: 50%;
     transform: translate(-50%, -10px);
-    width: 90%;
+    padding: 4px 10px;
+    white-space: nowrap;
     text-align: center;
-    color: white;
-    font-weight: bold;
     font-size: clamp(0.8rem, 1.6vw, 1.1rem);
+    font-weight: bold;
+    color: #fff;
     text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    background: rgba(40, 5, 5, 0.65);
+    border-radius: 8px;
     opacity: 0;
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
@@ -580,15 +674,8 @@ a.cv:active{
     transform: translate(-50%, 0);
 }
 
-/* di layar sentuh tidak ada hover, jadi teks langsung ditampilkan */
-@media (hover: none){
-    .softskills_card p{
-        opacity: 1;
-        transform: translate(-50%, 0);
-    }
-}
 
-/* ---------- CONTACT ---------- */
+/* ---------- 10. CONTACT ---------- */
 .contact{
     padding-top: clamp(80px, 14vw, 160px);
     text-align: center;
@@ -596,14 +683,20 @@ a.cv:active{
 
 .contact h2{
     font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
     font-size: clamp(1.4rem, 4vw, 2.6rem);
+    letter-spacing: 0;
     line-height: 1.3;
+    text-shadow: 2px 2px 0 var(--stamp);
 }
 
 .contact p{
     margin-top: 12px;
     font-family: 'Kanit', sans-serif;
     font-size: clamp(1rem, 2.4vw, 1.6rem);
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: var(--wheat);
 }
 
 .contact-icons{
@@ -622,9 +715,11 @@ a.cv:active{
     align-items: center;
     width: clamp(56px, 9vw, 90px);
     height: clamp(56px, 9vw, 90px);
-    border-radius: 50%;
-    color: orange;
+    color: var(--orange);
     text-decoration: none;
+    background: rgba(60, 10, 10, 0.6);
+    border: 2px solid var(--orange);
+    border-radius: 50%;
     box-shadow: 0 5px 15px rgba(255,165,0,0.3);
     transition: all 0.3s ease;
 }
@@ -641,9 +736,9 @@ a.cv:active{
 .contact-icons .icon::before{
     content: "";
     position: absolute;
-    inset: -8px;
+    inset: -10px;
+    border: 2px solid var(--orange);
     border-radius: 50%;
-    border: 2px solid orange;
     opacity: 0;
     transform: scale(0.9);
     transition: 0.3s;
@@ -654,17 +749,17 @@ a.cv:active{
     transform: scale(1.05);
 }
 
-/* ---------- FOOTER ---------- */
+
+/* ---------- 11. FOOTER ---------- */
 .footer{
     padding: 20px 16px;
     text-align: center;
-    font-size: clamp(0.75rem, 1.2vw, 0.9rem);
-    background: rgba(0,0,0,0.25);
+    font-size: clamp(0.85rem, 1.3vw, 1rem);
+    background: rgba(40, 5, 5, 0.6);
 }
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
+
+/* ---------- 12. RESPONSIVE ---------- */
 
 /* Tablet */
 @media (max-width: 900px){
@@ -681,39 +776,39 @@ a.cv:active{
     .deskripsi1{
         margin-left: auto;
         margin-right: auto;
-        text-align: center;
     }
 
     .photoprofile{
-        width: min(70%, 320px);
         flex: none;
+        width: min(70%, 320px);
     }
 
     .latarbelakang1,
+    .latarbelakang2,
     .educationdesc{
-        flex-direction: column;
-    }
-
-    /* foto selalu di atas teks pada latar belakang ke-2 sudah sesuai urutan HTML */
-    .latarbelakang2{
         flex-direction: column;
     }
 
     .latarbelakang1 img,
     .latarbelakang2 img,
     .educationdesc img{
-        width: 100%;
         flex: none;
+        width: 100%;
     }
 
     .latarbelakang1 p,
     .latarbelakang2 p,
     .educationdesc p{
         flex: none;
+        max-width: none;
     }
 
     .education h2{
         text-align: left;
+    }
+
+    .education h2::after{
+        margin-left: 0;
     }
 }
 
@@ -727,7 +822,17 @@ a.cv:active{
         scrollbar-width: none;
     }
 
-    .navbar::-webkit-scrollbar{ display: none; }
+    .navbar::-webkit-scrollbar{
+        display: none;
+    }
+
+    .deskripsi1,
+    .latarbelakang1 p,
+    .latarbelakang2 p,
+    .educationdesc p{
+        padding: 0.9rem 1rem;
+        font-size: 1rem;
+    }
 
     .card1, .card2, .card3, .card4{
         width: calc(50% - 10px);
@@ -746,7 +851,21 @@ a.cv:active{
     }
 }
 
-/* Hormati pengaturan "kurangi gerakan" */
+/* Layar sentuh: tidak ada hover, teks soft skills langsung tampil */
+@media (hover: none){
+    .softskills_card p{
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+
+/* ---------- 13. AKSESIBILITAS ---------- */
+:focus-visible{
+    outline: 3px solid var(--wheat);
+    outline-offset: 3px;
+}
+
 @media (prefers-reduced-motion: reduce){
     *,
     *::before,
@@ -756,115 +875,4 @@ a.cv:active{
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
-}
-
-
-/* =========================================================
-   TIPOGRAFI - tulisan yang mudah diingat
-   Ide: nama paling besar & tebal, sisanya lebih ringan,
-   judul punya "stempel" bayangan merah tua + garis orange.
-   ========================================================= */
-
-/* Sapaan: kecil & ringan, supaya nama terasa jauh lebih besar */
-.pengenalan h1:nth-of-type(1) .hallo,
-.pengenalan h1:nth-of-type(2) .hallo{
-    font-family: 'Kanit', sans-serif;
-    font-weight: 300;
-    font-size: clamp(1.1rem, 2.4vw, 1.7rem);
-    letter-spacing: 3px;
-    opacity: 0.9;
-}
-
-/* NAMA: besar, tebal, gradasi putih -> wheat -> orange */
-.pengenalan h1:nth-of-type(3) .hallo{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: clamp(2rem, 5vw, 3.6rem);
-    line-height: 1.1;
-    letter-spacing: 1px;
-    margin: 2px 0 6px;
-    background: linear-gradient(90deg, #ffffff 0%, wheat 55%, #ff9100 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    filter: drop-shadow(3px 3px 0 #5a0f0f);
-}
-
-/* Teks mengetik: gaya "kode", warna orange */
-.identitas{
-    font-family: 'Orbitron', 'Kanit', sans-serif;
-    font-weight: 600;
-    font-size: clamp(0.95rem, 2vw, 1.5rem);
-    letter-spacing: 1px;
-    color: var(--orange);
-    text-shadow: 0 0 8px rgba(255, 145, 0, 0.55);
-}
-
-/* Paragraf: ringan & lega supaya nyaman dibaca */
-.deskripsi1,
-.latarbelakang1 p,
-.latarbelakang2 p,
-.educationdesc p{
-    font-weight: 300;
-    letter-spacing: 0.3px;
-}
-
-/* Judul section: tebal + bayangan "stempel" + garis orange di bawahnya */
-.listproject h2,
-.background_skillset h2,
-.education h2,
-.skills h2{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    text-shadow: 3px 3px 0 #5a0f0f;
-}
-
-.listproject h2::after,
-.background_skillset > h2::after,
-.education h2::after,
-.skills h2::after{
-    content: "";
-    display: block;
-    width: 72px;
-    height: 5px;
-    margin-top: 12px;
-    border-radius: 3px;
-    background: var(--orange);
-    box-shadow: 0 0 12px rgba(255, 145, 0, 0.7);
-}
-
-.listproject h2::after{ margin-inline: auto; }      /* tengah */
-.education h2::after{ margin-left: auto; }           /* rata kanan */
-
-@media (max-width: 900px){
-    .education h2::after{ margin-left: 0; }          /* rata kiri di HP */
-}
-
-/* Sub-judul "Click to see details" */
-.listproject h3{
-    font-family: 'Kanit', sans-serif;
-    font-weight: 300;
-    letter-spacing: 2px;
-    color: var(--wheat);
-}
-
-/* Label Hard Skills / Soft Skills */
-.skills > p{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-/* Kalimat penutup di bagian kontak */
-.contact h2{
-    font-weight: 700;
-    text-shadow: 2px 2px 0 #5a0f0f;
-}
-
-.contact p{
-    font-weight: 300;
-    letter-spacing: 2px;
-    color: var(--wheat);
 }
