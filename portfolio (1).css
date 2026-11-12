@@ -1,0 +1,759 @@
+/* =========================================================
+   PORTFOLIO - Rahmat Ramdani
+   Tema tetap: merah + grid bergerak + aksen orange/neon
+   ========================================================= */
+
+:root{
+    --bg: #a34141;
+    --bg-soft: #c94d4d;
+    --red: #ff0033;
+    --red-dark: #990000;
+    --orange: #ff9100;
+    --wheat: wheat;
+    --text: #ffffff;
+    --nav-h: 56px;
+}
+
+/* ---------- RESET (sebelumnya memakai * dengan margin/background di semua elemen) ---------- */
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-h) + 16px);
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+}
+
+body{
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: clip;
+    font-family: 'Kanit', 'Roboto', sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+
+    /* grid bergerak dipindah ke body saja (lebih ringan, tidak ditumpuk di tiap elemen) */
+    background-color: var(--bg);
+    background-image:
+        linear-gradient(rgba(255,0,0,0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,0,0,0.3) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 12s linear infinite;
+}
+
+@keyframes gridMove{
+    from{ background-position: 0 0; }
+    to{ background-position: -60px -60px; }
+}
+
+h1, h2, h3, p{
+    margin: 0;
+}
+
+img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a{
+    -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible{
+    outline: 3px solid var(--wheat);
+    outline-offset: 3px;
+}
+
+/* ---------- WRAPPER ---------- */
+.semua{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 4vw, 40px);
+}
+
+/* ---------- LOADER ---------- */
+.loader{
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+
+    background: linear-gradient(135deg, #ff0000, #8b0000, #300000);
+    color: rgb(237, 231, 231);
+    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    transition: opacity 0.6s ease;
+}
+
+.loader.hide{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.spinner{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+    vertical-align: middle;
+    border: 4px solid white;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin{
+    to{ transform: rotate(360deg); }
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    min-height: var(--nav-h);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: clamp(14px, 3vw, 36px);
+    padding: 8px clamp(16px, 4vw, 40px);
+    font-family: 'Roboto', sans-serif;
+
+    background: rgba(120, 20, 20, 0.65);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.navbar a{
+    position: relative;
+    color: var(--text);
+    text-decoration: none;
+    font-size: clamp(0.85rem, 1.4vw, 1.1rem);
+    white-space: nowrap;
+    padding: 4px 2px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--wheat);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.navbar a:hover,
+.navbar a.active{
+    color: var(--wheat);
+}
+
+.navbar a:hover::after,
+.navbar a.active::after{
+    transform: scaleX(1);
+}
+
+/* ---------- HERO / PENGENALAN ---------- */
+.pengenalan{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(24px, 5vw, 64px);
+    padding: clamp(40px, 8vw, 100px) 0 0;
+}
+
+.pengenalan > div:first-child{
+    flex: 1 1 55%;
+    min-width: 0;
+}
+
+.hallo{
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.8rem, 4.2vw, 3.4rem);
+    letter-spacing: 1px;
+    line-height: 1.25;
+}
+
+.identitas{
+    display: inline-block;
+    min-height: 1.5em;
+    font-family: 'Kanit', sans-serif;
+    font-size: clamp(1.1rem, 2.4vw, 1.8rem);
+    padding-right: 5px;
+    border-right: 3px solid red;
+    animation: blink 0.7s infinite;
+}
+
+.pengenalan h2{
+    margin: 8px 0 12px;
+}
+
+@keyframes blink{
+    0%, 100%{ border-color: transparent; }
+    50%{ border-color: red; }
+}
+
+.deskripsi1{
+    display: block;
+    max-width: 60ch;
+    font-family: 'Kanit', sans-serif;
+    font-size: clamp(1rem, 1.7vw, 1.3rem);
+    line-height: 1.7;
+    text-align: left;
+}
+
+/* Tombol CV */
+a.cv,
+a.cv:link,
+a.cv:visited,
+a.cv:hover,
+a.cv:active{
+    text-decoration: none !important;
+    color: #ffffff !important;
+}
+
+.cv{
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    margin-top: 24px;
+    padding: 0.8rem 1.4rem;
+
+    background: linear-gradient(135deg, #ff0000, var(--red-dark));
+    border-radius: 8px;
+    cursor: pointer;
+
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.cv::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: 0.5s;
+}
+
+.cv:hover::before{ left: 100%; }
+
+.cv:hover{
+    box-shadow: 0 0 15px rgba(255,0,0,0.7), 0 0 30px rgba(255,0,0,0.5);
+    transform: translateY(-2px) scale(1.03);
+}
+
+.cv:active{
+    transform: scale(0.97);
+    box-shadow: 0 0 10px rgba(255,0,0,0.8);
+}
+
+.photoprofile{
+    flex: 0 1 40%;
+    max-width: 420px;
+    min-width: 0;
+}
+
+.photoprofile img{
+    width: 100%;
+    height: auto;
+    padding: 2px;
+    background-color: var(--bg-soft);
+    border-radius: 60px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* ---------- PROJECTS ---------- */
+.project{
+    padding-top: clamp(60px, 10vw, 120px);
+}
+
+.listproject{
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+.listproject h2,
+.background_skillset h2,
+.education h2{
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
+    line-height: 1.2;
+}
+
+.listproject h3{
+    margin-top: 6px;
+    font-size: clamp(0.95rem, 1.8vw, 1.3rem);
+    font-weight: 400;
+    opacity: 0.85;
+}
+
+.listproject > a{
+    display: block;
+    width: min(100%, 900px);
+    margin: 24px auto 0;
+}
+
+.listproject img{
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.5s ease;
+}
+
+.listproject img:hover{
+    opacity: 0.85;
+    transform: scale(1.03);
+    box-shadow: 0 14px 35px rgba(0,0,0,0.5);
+}
+
+/* ---------- BACKGROUNDS ---------- */
+.background_skillset{
+    padding-top: clamp(60px, 10vw, 120px);
+}
+
+.background_skillset > h2{
+    margin-bottom: clamp(20px, 4vw, 40px);
+    text-align: left;
+}
+
+.latarbelakang1,
+.latarbelakang2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(20px, 4vw, 48px);
+    margin-bottom: clamp(32px, 6vw, 72px);
+}
+
+.latarbelakang1 p,
+.latarbelakang2 p{
+    flex: 1 1 50%;
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    line-height: 1.75;
+    text-align: left;
+}
+
+.latarbelakang1 a,
+.latarbelakang2 a{
+    display: inline-block;
+    color: var(--wheat);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-size: inherit;
+    transition: opacity 0.3s ease;
+}
+
+.latarbelakang1 a:hover,
+.latarbelakang2 a:hover{
+    opacity: 0.75;
+}
+
+.latarbelakang1 img,
+.latarbelakang2 img{
+    flex: 1 1 45%;
+    width: 45%;
+    min-width: 0;
+    background-color: var(--bg);
+    border-radius: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+/* ---------- SERTIFIKAT ---------- */
+.button{
+    display: flex;
+    justify-content: center;
+    margin: 8px 0 16px;
+}
+
+.lainnya{
+    padding: 0.8rem 1.6rem;
+    font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+    font-family: 'Kanit', sans-serif;
+    color: orange;
+    background: transparent;
+    border: 2px solid orange;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.lainnya:hover{
+    transform: scale(1.06);
+    background: orange;
+    color: #3a0a0a;
+}
+
+#certifications{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease;
+}
+
+#certifications.show{
+    max-height: 2400px;
+}
+
+.card-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 24px 8px;
+}
+
+.card1, .card2, .card3, .card4{
+    width: 250px;
+}
+
+.card1 img, .card2 img, .card3 img, .card4 img{
+    width: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card1 img:hover,
+.card2 img:hover,
+.card3 img:hover,
+.card4 img:hover{
+    transform: scale(1.12);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.35);
+}
+
+/* ---------- EDUCATION ---------- */
+.education{
+    padding-top: clamp(50px, 8vw, 100px);
+}
+
+.education h2{
+    text-align: right;
+    margin-bottom: clamp(20px, 4vw, 40px);
+}
+
+.educationdesc{
+    display: flex;
+    align-items: center;
+    gap: clamp(20px, 4vw, 48px);
+}
+
+.educationdesc p{
+    flex: 1 1 50%;
+    font-size: clamp(1rem, 1.8vw, 1.35rem);
+    line-height: 1.75;
+    text-align: left;
+}
+
+.educationdesc img{
+    flex: 1 1 45%;
+    width: 45%;
+    min-width: 0;
+    border-radius: 20px;
+}
+
+/* ---------- SKILLS ---------- */
+.skills{
+    padding-top: clamp(60px, 10vw, 120px);
+}
+
+.skills h2{
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
+}
+
+.skills > p{
+    margin-top: 24px;
+    text-align: center;
+    color: var(--orange);
+    font-size: clamp(1.5rem, 4vw, 2.6rem);
+    text-shadow:
+        0 0 5px #e9e4e5,
+        0 0 10px #ff0033,
+        0 0 20px #ff0033,
+        0 0 40px #ff0033;
+}
+
+.skills-container{
+    position: relative;
+    width: 100%;
+    margin-top: 16px;
+    padding: 10px 0;
+    overflow: hidden;
+    background-color: var(--red);
+    box-shadow: 0 0 15px #ff0033, 0 0 30px #ff0033;
+}
+
+.skills_img{
+    display: flex;
+    width: max-content;
+    animation: scroll 24s linear infinite;
+    will-change: transform;
+}
+
+.skills-container:hover .skills_img{
+    animation-play-state: paused;
+}
+
+.gambar{
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(70px, 14vw, 150px);
+    margin: 0 clamp(10px, 2.5vw, 30px);
+}
+
+.skills_img img{
+    width: 80%;
+    border-radius: 10px;
+}
+
+@keyframes scroll{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+}
+
+/* Soft skills */
+.softskills{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: clamp(16px, 3vw, 36px);
+    padding: 24px 0 0;
+}
+
+.softskills_card{
+    position: relative;
+    width: min(260px, 30%);
+    border-radius: 20px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.softskills_card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #f5f2f3, 0 0 40px #ff0033, 0 0 80px #ff0033;
+}
+
+.softskills_card img{
+    width: 100%;
+    border-radius: 20px;
+}
+
+.softskills_card p{
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translate(-50%, -10px);
+    width: 90%;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: clamp(0.8rem, 1.6vw, 1.1rem);
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.softskills_card:hover p{
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+/* di layar sentuh tidak ada hover, jadi teks langsung ditampilkan */
+@media (hover: none){
+    .softskills_card p{
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* ---------- CONTACT ---------- */
+.contact{
+    padding-top: clamp(80px, 14vw, 160px);
+    text-align: center;
+}
+
+.contact h2{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: clamp(1.4rem, 4vw, 2.6rem);
+    line-height: 1.3;
+}
+
+.contact p{
+    margin-top: 12px;
+    font-family: 'Kanit', sans-serif;
+    font-size: clamp(1rem, 2.4vw, 1.6rem);
+}
+
+.contact-icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: clamp(20px, 5vw, 60px);
+    margin: clamp(24px, 5vw, 48px) auto clamp(48px, 8vw, 96px);
+}
+
+.contact-icons .icon{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: clamp(56px, 9vw, 90px);
+    height: clamp(56px, 9vw, 90px);
+    border-radius: 50%;
+    color: orange;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(255,165,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.contact-icons i{
+    font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+}
+
+.contact-icons .icon:hover{
+    transform: scale(1.25) rotate(-10deg);
+    box-shadow: 0 10px 25px rgba(255,165,0,0.8);
+}
+
+.contact-icons .icon::before{
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px solid orange;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: 0.3s;
+}
+
+.contact-icons .icon:hover::before{
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* ---------- FOOTER ---------- */
+.footer{
+    padding: 20px 16px;
+    text-align: center;
+    font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+    background: rgba(0,0,0,0.25);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+/* Tablet */
+@media (max-width: 900px){
+    .pengenalan{
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .pengenalan > div:first-child{
+        flex: none;
+        width: 100%;
+    }
+
+    .deskripsi1{
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .photoprofile{
+        width: min(70%, 320px);
+        flex: none;
+    }
+
+    .latarbelakang1,
+    .educationdesc{
+        flex-direction: column;
+    }
+
+    /* foto selalu di atas teks pada latar belakang ke-2 sudah sesuai urutan HTML */
+    .latarbelakang2{
+        flex-direction: column;
+    }
+
+    .latarbelakang1 img,
+    .latarbelakang2 img,
+    .educationdesc img{
+        width: 100%;
+        flex: none;
+    }
+
+    .latarbelakang1 p,
+    .latarbelakang2 p,
+    .educationdesc p{
+        flex: none;
+    }
+
+    .education h2{
+        text-align: left;
+    }
+}
+
+/* HP */
+@media (max-width: 600px){
+    :root{ --nav-h: 48px; }
+
+    .navbar{
+        justify-content: flex-start;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .navbar::-webkit-scrollbar{ display: none; }
+
+    .card1, .card2, .card3, .card4{
+        width: calc(50% - 10px);
+    }
+
+    .softskills_card{
+        width: calc(50% - 10px);
+    }
+
+    .softskills_card:last-child{
+        width: min(60%, 220px);
+    }
+
+    .skills_img{
+        animation-duration: 16s;
+    }
+}
+
+/* Hormati pengaturan "kurangi gerakan" */
+@media (prefers-reduced-motion: reduce){
+    *,
+    *::before,
+    *::after{
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

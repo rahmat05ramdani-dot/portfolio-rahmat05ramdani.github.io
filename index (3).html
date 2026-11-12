@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Rahmat Ramdani</title>
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Montserrat:wght@500;700&family=Orbitron:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+
+    <audio id="music" autoplay loop muted>
+        <source src="backsound.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="loader" id="loader">
+        <h1 data-aos="zoom-in">
+            Hello <br> Welcome to My Profile
+            <span class="spinner"></span>
+        </h1>
+    </div>
+
+    <nav class="navbar" aria-label="Main navigation">
+        <a href="#Projects" class="active">Projects</a>
+        <a href="#Backgrounds">Backgrounds</a>
+        <a href="#Educations">Education</a>
+        <a href="#Skills">Skills</a>
+        <a href="#Contacts">Contacts</a>
+    </nav>
+
+    <div class="semua">
+
+        <section class="pengenalan" data-aos="zoom-in" data-aos-delay="1500">
+            <div>
+                <h1><span class="hallo">Hallo,</span></h1>
+                <h1><span class="hallo">My name is</span></h1>
+                <h1><span class="hallo">RAHMAT RAMDANI</span></h1>
+                <h2><span class="identitas"></span></h2>
+                <p><span class="deskripsi1">I am a 5th semester Data Science student of Open University Indonesia who has 3 years of experience working as a production administrator at PERUM PERURI, the only institution with the legitimacy to print Indonesian banknotes.</span></p>
+                <div>
+                    <a href="CV TERBARU.pdf" download class="cv">Download My CV</a>
+                </div>
+            </div>
+            <div class="photoprofile" data-aos="flip-left" data-aos-delay="600">
+                <img src="Rectangle 2.png" alt="My photo profile" class="photo1">
+            </div>
+        </section>
+
+        <section class="project" data-aos="zoom-in">
+            <div class="listproject">
+                <h2 id="Projects">MY PROJECTS</h2>
+                <h3>Click to see details</h3>
+                <a href="AI CHATBOT.pdf#toolbar=0" target="_blank" rel="noopener" class="project1"><img src="Rectangle 4.png" alt="Project 1: AI Chatbot" loading="lazy"></a>
+                <a href="DATA ANALYTICS.pdf#toolbar=0" target="_blank" rel="noopener" class="project2"><img src="Rectangle 5.png" alt="Project 2: Data Analytics" loading="lazy"></a>
+                <a href="Regresi Linear.pdf#toolbar=0" target="_blank" rel="noopener" class="project3"><img src="Rectangle 6.png" alt="Project 3: Linear Regression" loading="lazy"></a>
+            </div>
+        </section>
+
+        <section class="background_skillset" data-aos="zoom-in">
+            <h2 id="Backgrounds">These are my backgrounds</h2>
+
+            <div class="latarbelakang1" data-aos="zoom-in">
+                <p>I have joined many competitions since I was at school. One of my biggest achievements is winning the gold medal in the CNC programming competition at the Mechanical Fair of Gadjah Mada University at national level. <a href="juara1.jpg" target="_blank" rel="noopener">Click here to see the certificate</a></p>
+                <img src="cnc.jpg" alt="CNC competition" loading="lazy">
+            </div>
+
+            <div class="latarbelakang2" data-aos="zoom-in">
+                <img src="iaka.png" alt="IAKA award" loading="lazy">
+                <p>After I graduated from vocational high school, I decided to work for one of the biggest national enterprises, PERUM PERCETAKAN UANG REPUBLIK INDONESIA (PERURI). It has been 3 years, with many achievements along the way. One of them is reaching the semifinal of the Innovation Award and Kaizen Award 2024-2025 with a double-digit grand prize. <a href="juara_iaka.png" target="_blank" rel="noopener">Click here to see the certificate</a></p>
+            </div>
+
+            <div class="button">
+                <button class="lainnya" type="button" aria-expanded="false" aria-controls="certifications" onclick="showCertifications()">see more certifications</button>
+            </div>
+
+            <div id="certifications">
+                <div class="card-container" id="cards">
+                    <div class="card1"><img src="1.png" alt="Certificate 1" loading="lazy"></div>
+                    <div class="card2"><img src="2.png" alt="Certificate 2" loading="lazy"></div>
+                    <div class="card3"><img src="3.png" alt="Certificate 3" loading="lazy"></div>
+                    <div class="card4"><img src="4.png" alt="Certificate 4" loading="lazy"></div>
+                </div>
+            </div>
+
+            <div id="Educations" class="education" data-aos="zoom-in">
+                <h2>This is My Education</h2>
+                <div class="educationdesc">
+                    <p>I am a 5th semester data science student of Open University Indonesia with a GPA of 3.72 out of 4.00. I always maintain my grades to gain more knowledge and experience.</p>
+                    <img src="ipk.png" alt="GPA transcript" loading="lazy">
+                </div>
+            </div>
+
+            <div class="skills" data-aos="zoom-in">
+                <h2 id="Skills">My Skills</h2>
+                <p><span>Hard Skills</span></p>
+                <div class="skills-container">
+                    <div class="skills_img">
+                        <div class="gambar"><img src="sap.png" alt="SAP"></div>
+                        <div class="gambar"><img src="excel.png" alt="Excel"></div>
+                        <div class="gambar"><img src="word.png" alt="Word"></div>
+                        <div class="gambar"><img src="powerpoint.png" alt="PowerPoint"></div>
+                        <div class="gambar"><img src="python.png" alt="Python"></div>
+                        <div class="gambar"><img src="r.png" alt="R"></div>
+                        <div class="gambar"><img src="sql-server.png" alt="SQL Server"></div>
+                        <!-- duplikat untuk efek scroll tanpa putus -->
+                        <div class="gambar" aria-hidden="true"><img src="sap.png" alt=""></div>
+                        <div class="gambar" aria-hidden="true"><img src="excel.png" alt=""></div>
+                        <div class="gambar" aria-hidden="true"><img src="word.png" alt=""></div>
+                        <div class="gambar" aria-hidden="true"><img src="powerpoint.png" alt=""></div>
+                        <div class="gambar" aria-hidden="true"><img src="python.png" alt=""></div>
+                        <div class="gambar" aria-hidden="true"><img src="r.png" alt=""></div>
+                        <div class="gambar" aria-hidden="true"><img src="sql-server.png" alt=""></div>
+                    </div>
+                </div>
+
+                <p><span>Soft Skills</span></p>
+                <div class="softskills">
+                    <div class="softskills_card">
+                        <p>Teamwork</p>
+                        <img src="Rectangle 18.png" alt="Teamwork" loading="lazy">
+                    </div>
+                    <div class="softskills_card">
+                        <p>Communication</p>
+                        <img src="Rectangle 19.png" alt="Communication" loading="lazy">
+                    </div>
+                    <div class="softskills_card">
+                        <p>Problem Solving</p>
+                        <img src="Rectangle 20.png" alt="Problem Solving" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact">
+            <h2 data-aos="fade-down" data-aos-delay="200">I am READY to join your awesome enterprise!</h2>
+            <p data-aos="flip-left" data-aos-delay="100">You can contact me on:</p>
+            <div class="contact-icons" id="Contacts">
+                <a href="https://www.linkedin.com/in/rahmat-ramdani-554285227/" target="_blank" rel="noopener" class="icon linkedin" aria-label="LinkedIn" data-aos="zoom-in">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="mailto:rahmat05ramdani@gmail.com" class="icon mail" aria-label="Email" data-aos="zoom-in">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://www.instagram.com/2r05official/" target="_blank" rel="noopener" class="icon instagram" aria-label="Instagram" data-aos="zoom-in">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p><span class="brand">@Rahmat Ramdani's Portfolio, all rights reserved</span></p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="portfolio.js"></script>
+</body>
+</html>
